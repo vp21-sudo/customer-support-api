@@ -1,0 +1,16 @@
+{
+  "name": "backend",
+  "scripts": {
+    "dev": "bun run --hot src/server.ts"
+  },
+  "dependencies": {
+    "@mastra/core": "^0.24.9",
+    "@mastra/libsql": "^0.16.4",
+    "@mastra/memory": "^0.15.13",
+    "hono": "^4.11.3",
+    "zod": "^4"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  }
+}
