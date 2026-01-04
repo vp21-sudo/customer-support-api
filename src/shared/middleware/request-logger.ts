@@ -8,24 +8,26 @@ export const requestLogger = async (c: Context, next: Next) => {
   const path = c.req.path;
   const url = c.req.url;
 
+  if (method === "OPTIONS") {
+    return next();
+  }
+
   await next();
 
   // Get status code - Hono sets response status on c.res after next()
   const statusCode = (c.res as any)?.status || 200;
   const duration = Date.now() - startTime;
-  
-  // Determine severity based on status code
-  const severityNumber = statusCode >= 500 
-    ? SeverityNumber.ERROR 
-    : statusCode >= 400 
-    ? SeverityNumber.WARN 
-    : SeverityNumber.INFO;
 
-  const severityText = statusCode >= 500 
-    ? "ERROR" 
-    : statusCode >= 400 
-    ? "WARN" 
-    : "INFO";
+  // Determine severity based on status code
+  const severityNumber =
+    statusCode >= 500
+      ? SeverityNumber.ERROR
+      : statusCode >= 400
+        ? SeverityNumber.WARN
+        : SeverityNumber.INFO;
+
+  const severityText =
+    statusCode >= 500 ? "ERROR" : statusCode >= 400 ? "WARN" : "INFO";
 
   // Get user ID if available (for authenticated routes)
   const userId = (c as any).get?.("userId");
@@ -45,4 +47,3 @@ export const requestLogger = async (c: Context, next: Next) => {
     },
   });
 };
-
