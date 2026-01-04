@@ -7,6 +7,10 @@
     "@mastra/core": "^0.24.9",
     "@mastra/libsql": "^0.16.4",
     "@mastra/memory": "^0.15.13",
+    "@opentelemetry/api-logs": "^0.208.0",
+    "@opentelemetry/exporter-logs-otlp-http": "^0.208.0",
+    "@opentelemetry/resources": "^2.2.0",
+    "@opentelemetry/sdk-node": "^0.208.0",
     "hono": "^4.11.3",
     "zod": "^4"
   },
